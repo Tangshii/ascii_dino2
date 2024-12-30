@@ -174,9 +174,9 @@ function AsciiGame(rowAmount: number, colAmount: number, updateCallback: Functio
 	function dinoJump() {
 		let isJumping = dino.y + 5 < colAmount;
 		if(isCollision) {
-			// if(Date.now() - isCollisionTime > 1000) {
+			if(new Date().getTime() - isCollisionTime > 1000) {
 				restartGame()
-			// }
+			}
 		} else {
 			paintWithLineBreak(dino.dinoEmptyString, dino.x, dino.y)
 			dino.y -= 1;
@@ -207,7 +207,7 @@ function AsciiGame(rowAmount: number, colAmount: number, updateCallback: Functio
 			let cactusCoords = getCoordsList(cactusGroup.string, cactusGroup.x, cactusGroup.y)
 			if(containsAny(cactusCoords, dinoCoords)) {
 				isCollision = true;
-				// isCollisionTime = Date.now();
+				isCollisionTime = new Date().getTime()
 				paintWithLineBreak(dino.dinoString, dino.x, dino.y) // paint dino so he's on top of cactus
 				asciiGrid.replaceCharAt2d("⚬", dino.x + 4, dino.y + 1 ) // paint dead eyeball
 				asciiGrid.replaceStringAt2dWithLineBrake(gameOverString, rowAmount/2-1-8, colAmount/2-1)
