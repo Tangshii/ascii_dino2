@@ -3,7 +3,7 @@ import AsciiGrid from "./AsciiGrid";
 
 function AsciiCactusGroup(x: number, y: number) {
     let cactus = AsciiCatus()
-    let cactusAmount = randomNum(1, 4);
+    let cactusAmount = randomNum(1, 3);
     let cactusGrid = AsciiGrid( (cactusAmount * cactus.width)-cactusAmount+1, cactus.height-1)
     // row amount is to account for 2nd and 3rd cactus being overlapped by one
 

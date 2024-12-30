@@ -70,6 +70,7 @@ function AsciiGame(rowAmount: number, colAmount: number, updateCallback: Functio
 	}
 
 	function paintCatusList() {
+		let cactiIndexToDelete: number[] = []
 		cactusGroupList.forEach((cactusGroup, index) => {
 			paintWithLineBreak(cactusGroup.emptyString , cactusGroup.x, cactusGroup.y)
 			if(cactusGroup.x > -cactusGroup.rowCount) { 
@@ -77,8 +78,12 @@ function AsciiGame(rowAmount: number, colAmount: number, updateCallback: Functio
 				paintWithLineBreak(cactusGroup.string, cactusGroup.x, cactusGroup.y,)
 			} else { 
 				score++
-				cactusGroupList.splice(index,1) // remove
+				cactiIndexToDelete.push(index);
 			}
+		});
+
+		cactiIndexToDelete.forEach(index => {
+			cactusGroupList.splice(index,1) // remove
 		});
 
 		if(cactusNextInteval <= 0) {
